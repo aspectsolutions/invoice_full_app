@@ -37,10 +37,17 @@ export default function Add() {
     setOpen(false);
   };
 
+  const openInvoiceAppNew = () => {
+    window.open("https://invoice-app-ashen.vercel.app/", "_blank");
+  }
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         + New
+      </Button>
+      <Button variant="outlined" style={{ marginLeft: '10px', marginRight: '10px' }} color="primary" onClick={openInvoiceAppNew}>
+        Create a new Invoice
       </Button>
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
