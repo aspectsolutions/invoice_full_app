@@ -527,27 +527,27 @@ class Topbar extends Component {
               } else if (this.props.location.pathname === "/index-seo-agency") {
                 return (
                   <div className="buy-button">
-                    <Link
-                      to="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
+                    <a
+                      href="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
                       target="_blank"
                       className="btn btn-pills btn-primary"
                     >
                       Sign In/Sign Up
-                    </Link>
+                    </a>
                   </div>
                 );
               } else {
                 return (
                   <div className="buy-button">
-                    <Link
-                      to="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
+                    <a
+                      hfre="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
                       target="_blank"
                       rel="noopener noreferrer"
                       id="buyButton"
                       className="btn btn-primary"
                     >
                       Sign In/Sign Up
-                    </Link>
+                    </a>
                   </div>
                 );
               }
@@ -785,14 +785,14 @@ class Topbar extends Component {
                 )}
               </ul>
               <div className="buy-menu-btn d-none">
-                <Link
-                  to="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
+                <a
+                  href="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary"
                 >
                   Sign In/Sign Up
-                </Link>
+                </a>
               </div>
             </div>
           </Container>
