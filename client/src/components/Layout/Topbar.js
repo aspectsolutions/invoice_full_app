@@ -528,7 +528,7 @@ class Topbar extends Component {
                 return (
                   <div className="buy-button">
                     <Link
-                      to="//1.envato.market/landrickreactjs"
+                      to="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
                       target="_blank"
                       className="btn btn-pills btn-primary"
                     >
@@ -540,7 +540,7 @@ class Topbar extends Component {
                 return (
                   <div className="buy-button">
                     <Link
-                      to="//1.envato.market/landrickreactjs"
+                      to="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
                       target="_blank"
                       rel="noopener noreferrer"
                       id="buyButton"
@@ -786,7 +786,7 @@ class Topbar extends Component {
               </ul>
               <div className="buy-menu-btn d-none">
                 <Link
-                  to="https://1.envato.market/landrickreactjs"
+                  to="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary"
