@@ -529,8 +529,8 @@ class Topbar extends Component {
                   <div className="buy-button">
                     <a
                       href="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
-                      target="_blank"
                       className="btn btn-pills btn-primary"
+                      onClick={() => window.location.href = "https://invoice-dashboard-two.vercel.app/auth/login-unprotected"}
                     >
                       Sign In/Sign Up
                     </a>
@@ -541,10 +541,8 @@ class Topbar extends Component {
                   <div className="buy-button">
                     <a
                       hfre="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      id="buyButton"
                       className="btn btn-primary"
+                      onClick={() => window.location.href = "https://invoice-dashboard-two.vercel.app/auth/login-unprotected"}
                     >
                       Sign In/Sign Up
                     </a>
@@ -787,9 +785,8 @@ class Topbar extends Component {
               <div className="buy-menu-btn d-none">
                 <a
                   href="https://invoice-dashboard-two.vercel.app/auth/login-unprotected"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="btn btn-primary"
+                  onClick={() => window.location.href = "https://invoice-dashboard-two.vercel.app/auth/login-unprotected"}
                 >
                   Sign In/Sign Up
                 </a>
