@@ -17,6 +17,8 @@ import { MIconButton } from '../../@material-extend';
 
 // ----------------------------------------------------------------------
 
+import { auth } from "../firebase";
+
 export default function RegisterForm() {
   const { register } = useAuth();
   const isMountedRef = useIsMountedRef();
@@ -64,14 +66,31 @@ export default function RegisterForm() {
 
   const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const register_ = (event) => {
+    event.preventDefault();
+    auth.createUserWithEmailAndPassword(email, password)
+    .then((result) => {
+        var user = result.user;
+        window.location.href = '/dashboard';
+    })
+    .catch(function(error) {
+        var errorMessage = error.message;
+        setMessage(errorMessage);
+    });
+  }
+
   return (
     <FormikProvider value={formik}>
-      <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+      <Form autoComplete="off" noValidate onSubmit={register_}>
         <Stack spacing={3}>
           {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
 
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <TextField
+            {/* <TextField
               fullWidth
               label="First name"
               {...getFieldProps('firstName')}
@@ -85,7 +104,7 @@ export default function RegisterForm() {
               {...getFieldProps('lastName')}
               error={Boolean(touched.lastName && errors.lastName)}
               helperText={touched.lastName && errors.lastName}
-            />
+            /> */}
           </Stack>
 
           <TextField
@@ -94,8 +113,10 @@ export default function RegisterForm() {
             type="email"
             label="Email address"
             {...getFieldProps('email')}
-            error={Boolean(touched.email && errors.email)}
+            // error={Boolean(touched.email && errors.email)}
             helperText={touched.email && errors.email}
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
           />
 
           <TextField
@@ -113,8 +134,10 @@ export default function RegisterForm() {
                 </InputAdornment>
               )
             }}
-            error={Boolean(touched.password && errors.password)}
+            //error={Boolean(touched.password && errors.password)}
             helperText={touched.password && errors.password}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
           />
 
           <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>

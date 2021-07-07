@@ -29,6 +29,8 @@ import { MIconButton } from '../../@material-extend';
 
 // ----------------------------------------------------------------------
 
+import { auth } from "../firebase";
+
 export default function LoginForm() {
   const { login } = useAuth();
   const isMountedRef = useIsMountedRef();
@@ -78,9 +80,33 @@ export default function LoginForm() {
     setShowPassword((show) => !show);
   };
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const login_ = (event) => {
+    console.log("1");
+    event.preventDefault();
+    auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                sessionStorage.setItem("userId", user.uid);
+                sessionStorage.setItem("userEmail", user.email);
+                window.location.href = "/dashboard/app";
+            } else {
+                console.log('error');
+            }
+        });
+    })
+    .catch(function(error) {
+        var errorMessage = error.message;
+        console.log(errorMessage);
+    });
+}
+
   return (
     <FormikProvider value={formik}>
-      <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+      <Form autoComplete="off" noValidate onSubmit={login_}>
         <Stack spacing={3}>
           {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
 
@@ -90,8 +116,10 @@ export default function LoginForm() {
             type="email"
             label="Email address"
             {...getFieldProps('email')}
-            error={Boolean(touched.email && errors.email)}
+            //error={Boolean(touched.email && errors.email)}
             helperText={touched.email && errors.email}
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
           />
 
           <TextField
@@ -109,8 +137,10 @@ export default function LoginForm() {
                 </InputAdornment>
               )
             }}
-            error={Boolean(touched.password && errors.password)}
+            //error={Boolean(touched.password && errors.password)}
             helperText={touched.password && errors.password}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
           />
         </Stack>
 
